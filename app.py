@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
-import joblib
 from datetime import date
+from pathlib import Path
 
 # --------------------------------------------------
 # PAGE CONFIGURATION
@@ -13,14 +13,22 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-MODEL_PATH = "house_price_model.pkl"
-DATA_PATH = "data.csv"
+BASE_DIR = Path(__file__).resolve().parent
+MODEL_PATH = BASE_DIR / "house_price_model.pkl"
+DATA_PATH = BASE_DIR / "data.csv"
 
 # --------------------------------------------------
 # LOAD MODEL AND DATA
 # --------------------------------------------------
 @st.cache_resource
 def load_model():
+    try:
+        import joblib
+    except ModuleNotFoundError as exc:
+        raise RuntimeError(
+            "The joblib package is missing. Install dependencies with "
+            "`python -m pip install -r requirements.txt`."
+        ) from exc
     return joblib.load(MODEL_PATH)
 
 @st.cache_data

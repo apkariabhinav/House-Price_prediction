@@ -1,6 +1,9 @@
 
 import pandas as pd
 import joblib
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
 
 from sklearn.model_selection import train_test_split
 from sklearn.compose import ColumnTransformer
@@ -11,7 +14,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, r2_score
 
 # 1. Load dataset
-df = pd.read_csv("data.csv")
+df = pd.read_csv(BASE_DIR / "data.csv")
 
 # 2. Convert date into separate columns
 df["date"] = pd.to_datetime(df["date"])
@@ -77,6 +80,6 @@ print("Mean Absolute Error:", mean_absolute_error(y_test, predictions))
 print("R2 Score:", r2_score(y_test, predictions))
 
 # 10. Save model
-joblib.dump(model, "house_price_model.pkl")
+joblib.dump(model, BASE_DIR / "house_price_model.pkl")
 
 print("Model trained and saved successfully!")
