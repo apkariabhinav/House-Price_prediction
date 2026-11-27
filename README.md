@@ -11,7 +11,7 @@ streamlit run app.py
 ```
 
 Keep `house_price_model.pkl` and `data.csv` in the repository root alongside
-`app.py`. The model was saved with scikit-learn 1.6.1, so that version is pinned
+`app.py`. The model was saved with scikit-learn 1.9.1, so that version is pinned
 in `requirements.txt`.
 
 ## Deploy on Streamlit Community Cloud

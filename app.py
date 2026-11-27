@@ -43,11 +43,11 @@ try:
 except Exception as e:
     st.error("The trained model could not be loaded.")
     st.warning(
-        "This model was saved with scikit-learn 1.6.1. "
+        "This model was saved with scikit-learn 1.9.1. "
         "Use the same version in this VS Code environment to avoid "
         "pickle compatibility errors."
     )
-    st.code("python -m pip install scikit-learn==1.6.1")
+    st.code("python -m pip install scikit-learn==1.9.1")
     st.caption(f"Technical details: {e}")
     st.stop()
 
